@@ -1,8 +1,5 @@
 import random
 import os
-# precisarei do cálculo pseudoaleatoriedade do python aplicada a uma lista de 3 elementos.
-
-print("======================================================\n Bem vindo ao jogo de Pedra, Papel, Tesoura - JokenPo \n =====================================================")
 
 placarVoce = 0
 placarComputador = 0
@@ -16,7 +13,6 @@ dictPlays = [
 def again():
     cont = int(input("Jogar novamente? 0 - CONTINUAR | 1 - SAIR \n"))
     if(cont == 0):
-        os.system('cls') or None
         main()
     else:
         os.system('cls') or None
@@ -26,18 +22,27 @@ def checkWin(play1,play2):
     calcWin = play1 - play2
     if(calcWin == -1 or calcWin ==2):
         print("Computador venceu!")
-        placarComputador=+1
-        print(placarComputador)
+        global placarComputador
+        placarComputador+=1
+
     elif(calcWin == 0):
         print("Empate!")
     else:
         print("Você venceu!")
-        placarVoce=+1
+        global placarVoce
+        placarVoce+=1
 
 def main():
+    os.system('cls') or None
+    
+    print("======================================================\n Bem vindo ao jogo de Pedra, Papel, Tesoura - JokenPo \n =====================================================")
     print("PLACAR: \n Você: {} \n Computador: {}".format(placarVoce,placarComputador))
 
     choice = int(input("Escolha seu lance: \n 0 - Pedra | 1 - Papel | 2 - Tesoura : "))
+
+    if(choice >2):
+        print("Jogada inválida, escolha números de 0 a 2")
+        again()
 
     choiceComputer = random.randint(0,2)
 
